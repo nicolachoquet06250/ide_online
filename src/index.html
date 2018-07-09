@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>IDE Online</title>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+	<script>
+		$(window).ready(function () {
+			$('#create').click(function () {
+				$.ajax({
+					url: 'http://localhost:2107/index.php',
+					type: 'get',
+					datas: {
+						path: $('#file_path').val(),
+						file: $('#file_title').val()
+					}
+				}).done(function (data) {
+					if(data.status) {
+						$('body').append('<p>Le fichier ' + $('#file_path').val() + '/' + $('#file_title').val() + ' à bien été créé </p>');
+					}
+				})
+			})
+		})
+	</script>
+</head>
+<body>
+	<input type="hidden" id="file_path" value="/text/lol">
+	<input type="text" id="file_title" placeholder="nom du fichier">
+	<input type="button" id="create">
+</body>
+</html>
