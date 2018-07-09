@@ -1,5 +1,7 @@
 <?php
 
+namespace arbo_gestion\traits;
+
 trait factory {
 	use singleton;
 

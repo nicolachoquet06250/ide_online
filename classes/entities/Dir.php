@@ -1,10 +1,16 @@
 <?php
 
+namespace arbo_gestion\entities;
+
 class Dir {
 	protected $path = '';
 	protected $name = '';
 
-	protected function read() {
+    public static function instence() {
+        return new Dir();
+    }
+
+	public function read() {
 		$list = [];
 		if($this->is_one()) {
 			$dir = opendir("{$this->path}/{$this->name}");
@@ -19,12 +25,12 @@ class Dir {
 		}
 		return $list;
 	}
-	protected function write() {
+	public function write() {
 		if(!$this->is_one()) {
 			mkdir("{$this->path}/{$this->name}", 0777, true);
 		}
 	}
-	protected function is_one() {
+	public function is_one() {
 		return is_dir("{$this->path}/{$this->name}");
 	}
 

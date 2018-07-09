@@ -1,5 +1,7 @@
 <?php
 
+namespace arbo_gestion\traits;
+
 trait singleton {
 	private static $instence = null;
 	private function __construct() {}
