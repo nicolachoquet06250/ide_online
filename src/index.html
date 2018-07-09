@@ -10,9 +10,9 @@
 		$(window).ready(function () {
 			$('#create').click(function () {
 				$.ajax({
-					url: 'http://localhost:2107/index.php',
+					url: 'http://localhost/ide_online/index.php',
 					type: 'get',
-					datas: {
+					data: {
 						path: $('#file_path').val(),
 						file: $('#file_title').val()
 					}
@@ -26,8 +26,8 @@
 	</script>
 </head>
 <body>
-	<input type="hidden" id="file_path" value="/text/lol">
+	<input type="hidden" id="file_path" value="/text">
 	<input type="text" id="file_title" placeholder="nom du fichier">
-	<input type="button" id="create">
+	<input type="button" value="Créer" id="create">
 </body>
 </html>

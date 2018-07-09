@@ -4,6 +4,8 @@ class Dir {
 	protected $path = '';
 	protected $name = '';
 
+	private $arbo = [];
+
 	protected function read() {
 		$list = [];
 		if($this->is_one()) {
@@ -27,6 +29,22 @@ class Dir {
 	protected function is_one() {
 		return is_dir("{$this->path}/{$this->name}");
 	}
+
+	public function get_arbo($path = '') {
+        $path = $path === '' ? "{$this->path}/{$this->name}" : "{$path}";
+	    $dir = opendir($path);
+	    while (($file = readdir($dir)) !== false) {
+	        if($file !== '.' && $file !== '..') {
+	            if(is_file("{$path}/{$file}")) {
+	                $this->arbo[] = "{$path}/{$file}";
+                }
+                elseif (is_dir("{$path}/{$file}")) {
+	                $this->get_arbo("{$path}/{$file}");
+                }
+            }
+        }
+        return $this->arbo;
+    }
 
 	public function path(string $path = null) {
 		if(is_null($path)) {
@@ -61,4 +79,16 @@ class Dir {
 		}
 		rmdir("{$this->path}/{$this->name}{$directory}");
 	}
+	public function get() {
+	    $liste = [];
+	    if($this->is_one()) {
+	        $dir = opendir("{$this->path}/{$this->name}");
+	        while (($file = readdir($dir)) !== false) {
+	            if($file !== '.' && $file !== '..') {
+	                $liste[] = "{$this->path}/{$this->name}/{$file}";
+                }
+            }
+        }
+        return $liste;
+    }
 }
