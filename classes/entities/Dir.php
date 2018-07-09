@@ -5,6 +5,7 @@ namespace arbo_gestion\entities;
 class Dir {
 	protected $path = '';
 	protected $name = '';
+    protected $arbo = [];
 
     public static function instence() {
         return new Dir();
