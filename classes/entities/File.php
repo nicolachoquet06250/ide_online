@@ -1,17 +1,23 @@
 <?php
 
+namespace arbo_gestion\entities;
+
 class File {
 	protected $path = '';
 	protected $name = '';
 	protected $vars = [];
 
-	protected function read() {
+	public static function instence() {
+	    return new File();
+    }
+
+	public function read() {
 		return file_get_contents("{$this->path}/{$this->name}");
 	}
-	protected function write($code) {
+	public function write($code) {
 		file_put_contents("{$this->path}/{$this->name}", $code);
 	}
-	protected function is_one() {
+	public function is_one() {
 		return is_file("{$this->path}/{$this->name}");
 	}
 
