@@ -1,4 +1,8 @@
 <?php
+
+use arbo_gestion\factories\DirFactory;
+use arbo_gestion\factories\FileFactory;
+
 ini_set('display_errors', 'on');
 
 require_once 'autoload.php';
